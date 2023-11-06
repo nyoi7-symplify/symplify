@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // console.log("GMAPS KEY: ", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
 module.exports = {
-    mode: process.env.NODE_ENV,
+    mode: "development",
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'build'),
