@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 const fs = require('fs');
-// const runtimeController = require('controller');
+const runtimeController = require('./controller');
 
 // pre-built middleware
 app.use(express.json());
@@ -15,16 +15,10 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 })
 
-// ROUTES
-
-app.post('/api/algoCode', (req, res) => {
-  const code = req.body
-  console.log("CODE", typeof code)
-
-  // check if this is a valid code block
-  // return res.status(200).json(code);
-
-  return res.type('text/plain').send(code).status(200);
+app.post('/api/algoCode', runtimeController.scriptBuilder, runtimeController.scriptRunner, (req, res) => {
+  console.log("INSIDE FINAL MIDDLEWARE", res.locals.time)
+  
+  return res.status(200).json(res.locals.time);
 })
 
 app.use((req, res) => res.sendStatus(404));
