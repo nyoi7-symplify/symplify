@@ -5,8 +5,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { darcula } from '@uiw/codemirror-theme-darcula';
 
-// const code = "const a = 10;";
-
 const App = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
   

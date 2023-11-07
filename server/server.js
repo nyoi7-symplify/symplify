@@ -7,17 +7,15 @@ const fs = require('fs');
 // const runtimeController = require('controller');
 
 // pre-built middleware
-
 app.use(express.json());
-
 app.use(bodyParser.text());
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/build', express.static(path.join(__dirname, '../build')));
-
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 })
+
+// ROUTES
 
 app.post('/api/algoCode', (req, res) => {
   const code = req.body
@@ -28,9 +26,6 @@ app.post('/api/algoCode', (req, res) => {
 
   return res.type('text/plain').send(code).status(200);
 })
-
-// ROUTES
-
 
 app.use((req, res) => res.sendStatus(404));
 
