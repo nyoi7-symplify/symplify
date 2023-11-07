@@ -35,7 +35,7 @@ runtimeController.scriptRunner = (req, res, next) => {
   }
 
   res.locals.res = algorithmResults;
-  return next(); 
+  return next();
 }
 
 runtimeController.storeRuns = (req, res, next) => {}
