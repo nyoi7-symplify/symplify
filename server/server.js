@@ -16,8 +16,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/algoCode', runtimeController.scriptBuilder, runtimeController.scriptRunner, (req, res) => {
-  console.log("INSIDE FINAL MIDDLEWARE", res.locals.res)
   return res.status(200).json(res.locals.res);
+})
+
+app.get('/api/data', runtimeController.getData, (req, res) => {
+  return res.status(200);
 })
 
 app.use((req, res) => res.sendStatus(404));

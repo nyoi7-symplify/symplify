@@ -2,12 +2,17 @@
   "name": "Symplify",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "/server.js",
   "scripts": {
     "build": "webpack",
     "start": "node ./server/server.js",
-    "dev": "webpack-dev-server --open & nodemon ./server/server.js",
+    "dev": "webpack-dev-server --open & nodemon --ignore server/scripts & nodemon ./server/server.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "/server/scripts/"
+    ]
   },
   "author": "",
   "license": "ISC",

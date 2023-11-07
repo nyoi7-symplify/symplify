@@ -12,6 +12,7 @@ runtimeController.scriptBuilder = (req, res, next) => {
 
 runtimeController.scriptRunner = (req, res, next) => {
   const startTime = performance.now();
+  const executionTime = (new Date()).toString();
   let result, accepted = true;
 
   try {
@@ -29,7 +30,8 @@ runtimeController.scriptRunner = (req, res, next) => {
   // console.log(`runtime: ${runTime}`);
 
   const algorithmResults = {
-    "runtime": runTime,
+    "runTime": runTime,
+    "execTime": executionTime,
     "result": result.toString(),
     "accepted": accepted
   }
@@ -38,7 +40,28 @@ runtimeController.scriptRunner = (req, res, next) => {
   return next(); 
 }
 
-runtimeController.storeRuns = (req, res, next) => {}
+runtimeController.storeRuns = (req, res, next) => {
+  const queryText = 'INSERT INTO Runtime (Runtime, Time) VALUES ($1, $2)';
+  const values = [res.locals.time, res.locals.date];
+
+  db.query(queryText, values)
+    .then(() => next())
+    .catch((err) => {
+      return next(
+        {
+          log: `storeRuns ${err}`,
+          message: { err: 'Error at storeRuns' }
+        }
+      );
+    });
+}
+
+runtimeController.getData = async (req, res, next) => {
+  const queryText = 'SELECT * FROM Runtime';
+  const result = await db.query(queryText)
+  console.log(result)
+  return next()
+}
 
 runtimeController.returnRun = (req, res, next) => {}
 

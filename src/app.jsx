@@ -13,7 +13,7 @@ const App = () => {
     setValue(val);
   }, []);
 
-  async function handleRun() {    
+  async function handleRun() {
     const res = await fetch('/api/algoCode',
     {
       method: 'POST',
