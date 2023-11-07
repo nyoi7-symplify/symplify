@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 const fs = require('fs');
-// const runtimeController = require('controller');
+const runtimeController = require('./controller');
 
 // pre-built middleware
 
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 })
 
-app.post('/api/algoCode', (req, res) => {
+app.post('/api/algoCode', runtimeController.scriptBuilder, runtimeController.scriptRunner, (req, res) => {
   const code = req.body
   console.log("CODE", typeof code)
 
