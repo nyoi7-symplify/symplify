@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const PORT = 3000;
+const fs = require('fs');
+const runtimeController = require('controller');
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -11,6 +13,10 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 
 app.get('/', (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
+})
+
+app.post('/algoCode', (req, res) => {
+    return res.status(200);
 })
 
 
