@@ -23,7 +23,6 @@ const App = () => {
       },
       body: value
     })
-
     console.log("RESPONSE", await res.text())
   }
   
