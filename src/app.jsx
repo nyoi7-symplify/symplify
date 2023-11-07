@@ -5,8 +5,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { darcula } from '@uiw/codemirror-theme-darcula';
 
-// const code = "const a = 10;";
-
 const App = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
   
@@ -15,13 +13,18 @@ const App = () => {
     setValue(val);
   }, []);
 
-  useEffect(() => {
-    console.log(value)
-  }, [value])
-
-  // const submitCode = () => {
-  //   console.log(val);
-  // }
+  async function handleRun() {    
+    const res = await fetch('/api/algoCode',
+    {
+      method: 'POST',
+      mode: "cors",
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: value
+    })
+    console.log(await res.json())
+  }
   
   return (
     <div className="App">
@@ -31,6 +34,8 @@ const App = () => {
       theme={darcula}
       onChange={onChange} 
       extensions={[javascript({ jsx: true })]}/>
+
+      <button onClick={handleRun}>Run</button>
     </div>
   )
 }
