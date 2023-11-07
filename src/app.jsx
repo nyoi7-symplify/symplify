@@ -23,7 +23,7 @@ const App = () => {
       },
       body: value
     })
-    console.log("RESPONSE", await res.text())
+    console.log(await res.json())
   }
   
   return (
