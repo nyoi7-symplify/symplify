@@ -15,13 +15,19 @@ const App = () => {
     setValue(val);
   }, []);
 
-  useEffect(() => {
-    console.log(value)
-  }, [value])
+  async function handleRun() {    
+    const res = await fetch('/api/algoCode',
+    {
+      method: 'POST',
+      mode: "cors",
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: value
+    })
 
-  // const submitCode = () => {
-  //   console.log(val);
-  // }
+    console.log("RESPONSE", await res.text())
+  }
   
   return (
     <div className="App">
@@ -31,6 +37,8 @@ const App = () => {
       theme={darcula}
       onChange={onChange} 
       extensions={[javascript({ jsx: true })]}/>
+
+      <button onClick={handleRun}>Run</button>
     </div>
   )
 }
