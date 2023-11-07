@@ -20,13 +20,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/algoCode', runtimeController.scriptBuilder, runtimeController.scriptRunner, (req, res) => {
-  const code = req.body
-  console.log("CODE", typeof code)
-
-  // check if this is a valid code block
-  // return res.status(200).json(code);
-
-  return res.type('text/plain').send(code).status(200);
+  console.log("INSIDE FINAL MIDDLEWARE", res.locals.time)
+  
+  return res.status(200).json(res.locals.time);
 })
 
 // ROUTES
