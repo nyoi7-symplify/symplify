@@ -1,4 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+const ResultsBox = ({ data }) => {
+  const { runtime, result } = data;
+
+  const boxStyle = {
+    backgroundColor: '#f5f5f5',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    padding: '10px',
+    margin: '10px',
+    fontSize: '16px',
+    color: '#333',
+  };
+
+  const resultStyle = {
+    fontWeight: 'bold',
+    color: '#0077b6',
+  };
+
+  const runtimeStyle = {
+    fontStyle: 'italic',
+    color: '#555',
+  };
+
+  return (
+    <div style={boxStyle}>
+      <p style={resultStyle}>Result: {result}</p>
+      <p style={runtimeStyle}>Runtime: {runtime} ms</p>
+    </div>
+  );
+}
+
+export default ResultsBox;
+
 
 //Box with three values from code:
     //Accepted/Failed results (Runtime error?)
