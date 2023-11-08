@@ -6,12 +6,12 @@ const ResultsBox = ({ data }) => {
   console.log(accepted);
 
   return (
-    <div className='boxStyle'>
-      <p className='resultStyle'>Result: {result}</p>
-      <p className='runtimeStyle'>Runtime: {runTime ? <>{runTime.toFixed(4)} ms</> : <></>}</p>
-      <p className='runtimeStyle'>Time of Execution: {execTime ? <>{new Date(execTime).toLocaleString()}</> : <></>}</p>
-      <p>{accepted ? <>Accepted!</> : <></>}</p>
-    </div>
+    <div className="results-box">
+    <p className="result">{result}</p>
+    <p className="runtime">Runtime: {runTime ? <>{runTime.toFixed(4)} ms</> : <></>}</p>
+    <p className="execution-time">Time of Execution: {execTime ? <>{new Date(execTime).toLocaleString()}</> : <></>}</p>
+    <p className={`accepted ${accepted ? 'accepted-flare' : ''}`}>{accepted ? <>Accepted!</> : <></>}</p>
+  </div>
   );
 }
 

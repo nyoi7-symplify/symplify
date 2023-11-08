@@ -23,15 +23,16 @@ const SolutionsChart = () => {
 
   }, [])
 
-  const containerStyle = {
-    background: 'white', // Set the background to white
+  const chartContainerStyle = {
+    background: 'white',
     borderRadius: '8px',
-    padding: '16px',
+    maxWidth: '300px', /* Set a maximum width for the chart */
+    margin: '0 auto', /* Center the chart horizontally */
   };
   
 
   return (
-    <div style={containerStyle}>
+    <div style={chartContainerStyle}>
     <Bar
       data={{
         labels: solutions.map((solution) => solution.runid),
