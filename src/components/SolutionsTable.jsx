@@ -21,10 +21,20 @@ const Solutions = () => {
 
   }, [])
 
-  return (<div>
-    {solutions.length !== 0 ? <>{solutions[0].label} Solutions</>: <></>}
+const tableContainerStyle = {
+  background: 'linear-gradient(to bottom, #E6E6E6, #0077b6)', // Adjust the gradient colors
+  borderRadius: '8px', // Adjust the border radius
+  padding: '16px', // Adjust the padding
+};
 
-    <TableContainer>
+  return (<div>
+  {/* //   <div>  {solutions.length !== 0 ? <>{solutions[0].label} Solutions</>: <></>}</div> */}
+  <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px', fontWeight: 'bold', color: 'white', textAlign: 'center'}}>
+  {solutions.length !== 0 ? <>{solutions[0].label} Solutions</> : <></>}
+</div>
+
+
+    <TableContainer  style={tableContainerStyle}>
       <Table>
         <TableHead>
           <TableRow>

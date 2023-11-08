@@ -9,7 +9,7 @@ const runtimeController = require('./controller');
 // pre-built middleware
 app.use(express.json());
 app.use(bodyParser.text());
-app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
