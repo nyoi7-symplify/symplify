@@ -13,6 +13,8 @@ import SolutionsChart from './components/SolutionsChart.jsx';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Bar, Doughnut, Line } from 'react-chartjs-2'
 
+import './app.css'
+
 const App = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
   const [results, setResults] = useState({});

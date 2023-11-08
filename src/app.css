@@ -4,3 +4,24 @@
   justify-content: center;
   align-items: center;
 }
+
+.boxStyle {
+  background-color: #F5F5F5;
+  border: '1px solid #ccc';
+  border-Radius: '5px';
+  width: '500px';
+  padding: '10px';
+  margin: '10px';
+  font-Size: '16px';
+  color: '#333';
+}
+
+.resultStyle {
+  font-Weight: 'bold';
+  color: '#0077B6';
+}
+
+.runtimeStyle{
+  font-Style: 'italic';
+  color: '#555';
+}
