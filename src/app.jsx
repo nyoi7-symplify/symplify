@@ -86,7 +86,6 @@ const App = () => {
 
         <Solutions solutions={solutions}/>
         <SolutionsChart solutions={solutions}/>
-    
       </div>
     </div>
   )
