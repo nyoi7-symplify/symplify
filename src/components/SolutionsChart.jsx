@@ -23,19 +23,28 @@ const SolutionsChart = () => {
 
   }, [])
 
-  return (<>
-      <Bar
-        data={{
-          labels: solutions.map((solution) => solution.runid),
-          datasets: [
-            {
-              label: "Runtime (in ms)",
-              data: solutions.map((solution) => solution.runtime)
-            }
-          ]
-        }}
-      />
-  </>);
+  const containerStyle = {
+    background: 'white', // Set the background to white
+    borderRadius: '8px',
+    padding: '16px',
+  };
+  
+
+  return (
+    <div style={containerStyle}>
+    <Bar
+      data={{
+        labels: solutions.map((solution) => solution.runid),
+        datasets: [
+          {
+            label: "Runtime (in ms)",
+            data: solutions.map((solution) => solution.runtime),
+          },
+        ],
+      }}
+    />
+  </div>
+  );
 }
 
 export default SolutionsChart;

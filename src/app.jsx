@@ -4,8 +4,9 @@ import CodeMirror from '@uiw/react-codemirror';
 // import 'codemirror/theme/dracula.css';
 import { javascript } from '@codemirror/lang-javascript';
 import { darcula } from '@uiw/codemirror-theme-darcula';
+import logo from './files/logo.png'
 
-import { Button } from '@mui/material';
+import { Box, Button, AppBar, Typography, Toolbar } from '@mui/material';
 import ResultsBox from './components/Results.jsx';
 import Solutions from './components/SolutionsTable.jsx';
 import SolutionsChart from './components/SolutionsChart.jsx';
@@ -39,25 +40,30 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <CodeMirror 
-      value={value} 
-      height="200px"
-      width="800px"
-      theme={darcula}
-      onChange={onChange} 
-      extensions={[javascript({ jsx: true })]}/>
+    <div className="app-container">
+      <img className='logo' src={logo}></img>
+    <div className="app-left">
+      <CodeMirror
+        value={value}
+        height="200px"
+        width="800px"
+        theme={darcula}
+        onChange={onChange}
+        extensions={[javascript({ jsx: true })]}
+      />
 
-      <br />
-      <Button variant="outlined" onClick={handleRun}>Submit</Button>
+      <Button variant="outlined" onClick={handleRun}>
+        Submit
+      </Button>
 
       {results !== null ? <ResultsBox data={results} /> : null}
-
-      <Solutions />
-
-      <SolutionsChart />
-     
     </div>
+
+    <div className="app-right">
+      <Solutions />
+      <SolutionsChart />
+    </div>
+  </div>
   )
 }
 
