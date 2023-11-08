@@ -1,38 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
-const Solutions = () => {
-  const [solutions, setSolutions] = useState([])
+const Solutions = ({ solutions }) => {
 
-  useEffect(() => {
-    if(solutions.length) {
-      // console.log("Solutions for", solutions[0].label)
-      // console.log(solutions)
-    }
-  }, [solutions])
-
-  useEffect(() => {
-    async function getSolutions() {
-      const res = await fetch('/api/data')
-      const data = await res.json();
-      setSolutions(data)
-    }
-    getSolutions()
-
-  }, [])
-
-const tableContainerStyle = {
-  background: 'linear-gradient(to bottom, #E6E6E6, #0077b6)', // Adjust the gradient colors
-  borderRadius: '8px', // Adjust the border radius
-  padding: '16px', // Adjust the padding
-};
+  const tableContainerStyle = {
+    background: 'linear-gradient(to bottom, #E6E6E6, #0077b6)', // Adjust the gradient colors
+    borderRadius: '8px', // Adjust the border radius
+    padding: '16px', // Adjust the padding
+  };
 
   return (<div>
   {/* //   <div>  {solutions.length !== 0 ? <>{solutions[0].label} Solutions</>: <></>}</div> */}
   <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px', fontWeight: 'bold', color: 'white', textAlign: 'center'}}>
-  {solutions.length !== 0 ? <>{solutions[0].label} Solutions</> : <></>}
-</div>
-
+    {solutions.length !== 0 ? <>{solutions[0].label} Solutions</> : <></>}
+  </div>
 
     <TableContainer  style={tableContainerStyle}>
       <Table>
