@@ -1,12 +1,44 @@
 const db = require('./model.js');
 const { exec, execSync } = require('child_process');
 const fs = require('fs');
+const formatInputForOpenAI = require('./utils/formatInputForOpenAI');
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+  apiKey: process.env.OpenAIAPIKey 
+});
 
 const runtimeController = {};
 
 runtimeController.scriptBuilder = (req, res, next) => {
   // console.log(req.body)
   fs.writeFileSync('./server/scripts/test.js', req.body);
+  return next();
+}
+
+runtimeController.timeAndSpaceCalculator = async (req, res, next) => {
+  // JS file containing algo that we already have
+  // standardized formatted message / request asking ChatGPT to compute the T&S complexity of our algo
+
+  const algoFile = fs.readFileSync("server/scripts/test.js", 'utf-8')
+  const input = formatInputForOpenAI(algoFile);
+  // console.log(input)
+
+  try {
+    
+    const chatCompletion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{"role": "user", "content": "Hello"}],
+      max_tokens: 30,
+    });
+    
+    console.log(await chatCompletion)
+    console.log(await chatCompletion.choices[0].message);
+
+  } catch (err) {
+    console.log("inside of timeAndSpaceCalculator", err)
+  }
+
   return next();
 }
 

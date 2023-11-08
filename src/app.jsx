@@ -23,25 +23,22 @@ const App = () => {
 
   const [solutions, setSolutions] = useState([])
 
-  useEffect(() => {
-    if(solutions.length) {
-      console.log("Solutions for", solutions[0].label)
-      console.log(solutions)
-    }
-  }, [solutions])
+  async function getSolutions() {
+    const res = await fetch('/api/data')
+    const data = await res.json();
+    setSolutions(data)
+  }  
+
+  // useEffect(() => {
+  //   if(solutions.length) {
+  //     console.log("Solutions for", solutions[0].label)
+  //     console.log(solutions)
+  //   }
+  // }, [solutions])
 
   useEffect(() => {
-    async function getSolutions() {
-      const res = await fetch('/api/data')
-      const data = await res.json();
-      setSolutions(data)
-    }
     getSolutions()
-
   }, [])
-
-  
-
  
   const onChange = React.useCallback((val, viewUpdate) => {
     setValue(val);
@@ -59,7 +56,8 @@ const App = () => {
     })
     const data = await res.json();
     console.log("Data received", data)
-    
+
+    getSolutions()
     setResults(data);
     // console.log(await res.json())
   }
