@@ -28,6 +28,10 @@ app.get('/api/data', runtimeController.getData, (req, res) => {
   return res.status(200).json(res.locals.data);
 })
 
+app.post('/api/analyze', runtimeController.timeAndSpaceCalculator, (req, res) => {
+  return res.status(200)
+})
+
 app.use((req, res) => res.sendStatus(404));
 
 // Global error handler

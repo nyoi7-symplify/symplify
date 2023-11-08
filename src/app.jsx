@@ -6,9 +6,6 @@ import { javascript } from '@codemirror/lang-javascript';
 import { darcula } from '@uiw/codemirror-theme-darcula';
 
 // import logo from './files/logo.png'
-=======
-
-
 
 import { Box, Button, AppBar, Typography, Toolbar } from '@mui/material';
 import ResultsBox from './components/Results.jsx';
@@ -18,11 +15,9 @@ import SolutionsChart from './components/SolutionsChart.jsx';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Bar, Doughnut, Line } from 'react-chartjs-2'
 
-
 import Navbar from './components/Navbar.jsx';
 
 import './app.css'
-
 
 const App = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
@@ -30,25 +25,22 @@ const App = () => {
 
   const [solutions, setSolutions] = useState([])
 
-  useEffect(() => {
-    if(solutions.length) {
-      console.log("Solutions for", solutions[0].label)
-      console.log(solutions)
-    }
-  }, [solutions])
+  async function getSolutions() {
+    const res = await fetch('/api/data')
+    const data = await res.json();
+    setSolutions(data)
+  }  
+
+  // useEffect(() => {
+  //   if(solutions.length) {
+  //     console.log("Solutions for", solutions[0].label)
+  //     console.log(solutions)
+  //   }
+  // }, [solutions])
 
   useEffect(() => {
-    async function getSolutions() {
-      const res = await fetch('/api/data')
-      const data = await res.json();
-      setSolutions(data)
-    }
     getSolutions()
-
   }, [])
-
-  
-
  
   const onChange = React.useCallback((val, viewUpdate) => {
     setValue(val);
@@ -66,7 +58,8 @@ const App = () => {
     })
     const data = await res.json();
     console.log("Data received", data)
-    
+
+    getSolutions()
     setResults(data);
     // console.log(await res.json())
   }
@@ -74,42 +67,28 @@ const App = () => {
   return (
     <div className="app-container">
     
-    <div className="app-left">
-    <Navbar />
-      <CodeMirror
-        value={value}
-        height="200px"
-        width="800px"
-        theme={darcula}
-        onChange={onChange}
-        extensions={[javascript({ jsx: true })]}
-      />
-       
-      <Button variant="outlined" onClick={handleRun}>
-        Submit
-      </Button>
+      <div className="app-left">
+        <Navbar />
+        <CodeMirror
+          value={value}
+          height="200px"
+          width="800px"
+          theme={darcula}
+          onChange={onChange}
+          extensions={[javascript({ jsx: true })]}
+        />
+          
+        <Button variant="outlined" onClick={handleRun}>
+          Submit
+        </Button>
+          
+        {results !== null ? <ResultsBox data={results} /> : null}
 
-      
-      {results !== null ? <ResultsBox data={results} /> : null}
-
-
-      <Solutions />
-      <SolutionsChart />
-
-//     <div className="app-right">
-//       <Solutions solutions={solutions}/>
-//       <SolutionsChart solutions={solutions}/>
-
-//     </div>
-
-    {/* <div className="app-right">
-     
-    </div> */}
-    
-  </div>
+        <Solutions solutions={solutions}/>
+        <SolutionsChart solutions={solutions}/>
+      </div>
+    </div>
   )
 }
-
-
 
 export default App;
