@@ -15,9 +15,18 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 })
 
-app.post('/api/algoCode', runtimeController.scriptBuilder, runtimeController.scriptRunner, (req, res) => {
-  console.log("INSIDE FINAL MIDDLEWARE", res.locals.res)
+app.post('/api/algoCode', 
+runtimeController.scriptBuilder, // builds JS file
+runtimeController.scriptRunner,  // executes built JS file
+runtimeController.storeRuns, // stores results in the DB
+(req, res) => {
+
+  console.log(res.locals.res);
   return res.status(200).json(res.locals.res);
+})
+
+app.get('/api/data', runtimeController.getData, (req, res) => {
+  return res.status(200).json(res.locals.data);
 })
 
 app.use((req, res) => res.sendStatus(404));
