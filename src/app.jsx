@@ -4,7 +4,11 @@ import CodeMirror from '@uiw/react-codemirror';
 // import 'codemirror/theme/dracula.css';
 import { javascript } from '@codemirror/lang-javascript';
 import { darcula } from '@uiw/codemirror-theme-darcula';
+
 // import logo from './files/logo.png'
+=======
+
+
 
 import { Box, Button, AppBar, Typography, Toolbar } from '@mui/material';
 import ResultsBox from './components/Results.jsx';
@@ -14,11 +18,37 @@ import SolutionsChart from './components/SolutionsChart.jsx';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Bar, Doughnut, Line } from 'react-chartjs-2'
 
+
 import Navbar from './components/Navbar.jsx';
+
+import './app.css'
+
 
 const App = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
   const [results, setResults] = useState({});
+
+  const [solutions, setSolutions] = useState([])
+
+  useEffect(() => {
+    if(solutions.length) {
+      console.log("Solutions for", solutions[0].label)
+      console.log(solutions)
+    }
+  }, [solutions])
+
+  useEffect(() => {
+    async function getSolutions() {
+      const res = await fetch('/api/data')
+      const data = await res.json();
+      setSolutions(data)
+    }
+    getSolutions()
+
+  }, [])
+
+  
+
  
   const onChange = React.useCallback((val, viewUpdate) => {
     setValue(val);
@@ -62,9 +92,15 @@ const App = () => {
       
       {results !== null ? <ResultsBox data={results} /> : null}
 
+
       <Solutions />
       <SolutionsChart />
-    </div>
+
+//     <div className="app-right">
+//       <Solutions solutions={solutions}/>
+//       <SolutionsChart solutions={solutions}/>
+
+//     </div>
 
     {/* <div className="app-right">
      

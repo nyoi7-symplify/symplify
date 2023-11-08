@@ -50,7 +50,9 @@ module.exports = {
         new HtmlWebpackPlugin({
           template: './src/index.html',
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+          filename: 'app.css', // Set the desired output file name
+        }),
         // new Dotenv(),
     ],
 }

@@ -39,26 +39,25 @@ runtimeController.scriptRunner = (req, res, next) => {
   return next();
 }
 
-runtimeController.storeRuns = (req, res, next) => {
-  
+runtimeController.storeRuns = async (req, res, next) => {
   // uncomment out query code when you want to insert more execution entries into the DB
-
-  // const queryText = 'INSERT INTO Runtime (Runtime, Time) VALUES ($1, $2)';
-  // const values = [res.locals.time, res.locals.date];
-
-  // const { runTime, execTime } = res.locals.res;
+  const { runTime, execTime } = res.locals.res;
   // console.log("INSIDE OF storeRuns", runTime, execTime)
 
-  // // db.query(queryText, values)
-  // //   .then(() => next())
-  // //   .catch((err) => {
-  // //     return next(
-  // //       {
-  // //         log: `storeRuns ${err}`,
-  // //         message: { err: 'Error at storeRuns' }
-  // //       }
-  // //     );
-  // //   });
+  const queryText = 'INSERT INTO Runtime (Runtime, Time) VALUES ($1, $2)';
+  const values = [runTime, execTime];
+
+  try {
+    const result = await db.query(queryText, values)
+    console.log("RES INSIDE OF storeRuns", result)
+  } catch (err) {
+    return next(
+      {
+        log: `storeRuns ${err}`,
+        message: { err: 'Error at storeRuns' }
+      }
+    );
+  }
 
   return next();
 }

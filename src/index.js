@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createRoot } from 'react-dom/client'; // use this instead
 import App from './app.jsx';
-import styles from './app.css';
+
+import './app.css';
 
 // NEW create root syntax
 const container = document.getElementById('app');

@@ -20,7 +20,6 @@ runtimeController.scriptBuilder, // builds JS file
 runtimeController.scriptRunner,  // executes built JS file
 runtimeController.storeRuns, // stores results in the DB
 (req, res) => {
-
   console.log(res.locals.res);
   return res.status(200).json(res.locals.res);
 })
