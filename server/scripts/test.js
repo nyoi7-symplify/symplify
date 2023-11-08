@@ -5,5 +5,5 @@ function fibonacci(n) {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-const result = fibonacci(35); // Calculate Fibonacci of 35
-console.log(result);
+const result = fibonacci(35); // Calculate Fibonacci of 10
+console.log(result); // Output: 55
