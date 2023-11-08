@@ -1,48 +1,135 @@
-
-.app-container {
+/* Navbar.css */
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(82,113,255,1) 35%, rgba(0,212,255,1) 100%);
+  color: white;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.navbar-logo img {
+  width: 100px;
+  opacity: 0.7; /* Adjust the opacity value as needed */
+  position: relative; /* Ensures that the z-index property is effective */
+  z-index: -1; /* Send the image behind the text content */
+}
+
+
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  margin: 0 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-link a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-link a:hover {
+  text-decoration: underline;
+}
+
+/* Updated content container */
+.content-container {
+  padding-top: 70px; /* Adjust the value based on your navbar height */
+  overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+/* App.css */
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 20px;
   align-items: flex-start;
   padding: 16px;
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(82,113,255,1) 35%, rgba(0,212,255,1) 100%);
-
 }
 
 .app-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 16px;
+  grid-column: 1;
+  padding-top: 200px;
 }
 
-.app-right {
-  display: flex;
-  flex-direction: row;
+/* .app-right {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 20px;
   align-items: flex-start;
+} */
+
+.submitButton {
+  display: flex;
+  flex-direction: center;
 }
 
-.boxStyle {
+.results-box {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  border-Radius: 5px;
-  width: 500px;
-  padding: 10px;
-  margin: 10px;
-  font-Size: 16px;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 8px;
+  font-family: 'Arial', sans-serif;
   color: #333;
+  text-align: center;
+  max-width: 300px;
 }
 
-.resultStyle {
-  font-Weight: bold;
+.result {
+  font-weight: bold;
+  font-size: 20px;
   color: #0077b6;
 }
 
-.runtimeStyle{
-  font-Style: italic;
+.runtime {
+  font-style: italic;
+  font-size: 14px;
   color: #555;
 }
 
-.logo{
+.execution-time {
+  font-style: italic;
+  font-size: 14px;
+  color: #555;
+}
+
+.accepted {
+  font-weight: bold;
+  font-size: 18px;
+  color: #4CAF50;
+}
+
+.accepted-flare {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  margin: 5px 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.accepted-flare:hover {
+  background-color: #45A049;
+  color: white;
+}
+
+.logo {
   width: 35%;
-  opacity: 50%;
+  opacity: 80%;
 }

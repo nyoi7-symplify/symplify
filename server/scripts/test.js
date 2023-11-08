@@ -1,1 +1,9 @@
-console.log('hello world!');
+function fibonacci(n) {
+  if (n <= 0) return 0;
+  if (n === 1) return 1;
+
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+const result = fibonacci(35); // Calculate Fibonacci of 35
+console.log(result);
