@@ -24,5 +24,5 @@ const Navbar = () => {
     </nav>
   );
 };
-
+// adding some comments here to show where the navbar is displayed
 export default Navbar;
